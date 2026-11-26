@@ -19,7 +19,9 @@ jobs:
           gradle-version: 8.7
       - run: gradle assembleDebug --no-daemon
         working-directory: jelly_wallpaper
+      - run: find jelly_wallpaper -name "*.apk"
       - uses: actions/upload-artifact@v4
         with:
           name: jelly-wallpaper-apk
-          path: jelly_wallpaper/build/outputs/apk/debug/app-debug.apk
+          path: jelly_wallpaper/**/build/outputs/apk/**/*.apk
+          if-no-files-found: error
